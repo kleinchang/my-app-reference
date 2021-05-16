@@ -1,18 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BasicTable2 from './BasicTable2'
 
-const NewsCard = (props) => {
-	return (
-		<div style={{ padding: '20' }}>
-			<a href={props.url}>
-				{props.title} by {props.author}
-			</a>
-		</div>
-	);
-};
-
-function App2(props) {
-	console.log(`App2 ${props}`)
+const App3 = (props) => {
+	console.log(`App3 ${props}`)
 
     const [hits, setHits] = useState([]);
     const [isLoaded, setisLoaded] = useState(false);
@@ -32,26 +22,16 @@ function App2(props) {
 			})
 			.catch(error => console.error('Error', error));
 	};
-	//handleFetch()
+
+	useEffect(handleFetch, [])
 
 return (
     <div>
-         <label>Search</label>
+         {/* <label>Search</label>
         <input type="text" onChange={(event) => setQuery(event.target.value)} />
-        <button onClick={handleFetch}>Get Data</button>
-
+        <button onClick={handleFetch}>Get Data</button> */}
 
 			{isLoaded ? (
-				// hits.map((item) => {
-				// 	return (
-				// 		<NewsCard
-				// 			url={item.url}
-				// 			title={item.title}
-				// 			author={item.author}
-				// 			key={item.objectID}
-				// 		/>
-				// 	);
-				// }
 				<BasicTable2 hits={hits} />
 			) : (
 				<div></div>
@@ -61,4 +41,4 @@ return (
   
 }
 
-export default App2;
+export default App3;

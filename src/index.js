@@ -1,10 +1,14 @@
 import React from 'react';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import BasicTable from './components/BasicTable'
 import App2 from './components/App2'
+import App3 from './components/App3'
+import FetchApproach from './components/FetchApproach'
+// import TopNavbar from './nav/top-navbar.component';
 
 function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
   return { name, calories, fat, carbs, protein };
@@ -22,9 +26,27 @@ const rows = [
 ReactDOM.render(
   // <React.StrictMode>
   <div>
-    <App2 keyword='startup' />
-    <App2 keyword='netflix' />
+    <h1>Pick Up Area Widgets</h1>
+    <App3 keyword='startup' />
+    <h1>Enabled Widgets</h1>
+    <App3 keyword='netflix' />
+    <h1>Recent Deployments</h1>
     <BasicTable rows={rows} />
+    <h1>Widgets</h1>
+    <FetchApproach />
+    <h1>Route</h1>
+    <Router>
+      <Switch>
+      <Link to="/contact">Contact</Link>{' '}
+      <Link to="/">Home2</Link>{' '}
+      <Link to={{pathname: '/about'}}>About</Link>{' '}
+        <Route path="/" exact component={FetchApproach} />
+        <Route path="/contact" component={App3} />
+        {/* <Route path="/products" exact component={FetchApproach} /> */}
+        {/* <Route path="/products/:id?" component={FetchApproach} /> */}
+      </Switch>      
+    </Router>
+    
 </div>,
     // <BasicTable />
   // </React.StrictMode>,
